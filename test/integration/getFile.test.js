@@ -62,7 +62,8 @@ test('GET /non_existant_file', async () => {
         .get('/non_existant_file')
         .expect(404)
         .then((res) => {
-            expect(res.body).toEqual({message: 'Not found: /non_existant_file'})
+            expect(res.body.message)
+                .toEqual('Not found: /non_existant_file')
         })
 })
 
@@ -71,7 +72,8 @@ test('GET with .. may not escape pub dir', async () => {
         .get('/../out_of_scope_file')
         .expect(401)
         .then((res) => {
-            expect(res.body).toEqual({message: 'Paths with .. segments are not permitted: /../out_of_scope_file'})
+            expect(res.body.message)
+                .toEqual('Paths with .. segments are not permitted: /../out_of_scope_file')
         })
 })
 
@@ -80,6 +82,7 @@ test('GET with .. is rejected even if it doesnt escape', async () => {
         .get('/nonempty_dir/../non_json_file')
         .expect(401)
         .then((res) => {
-            expect(res.body).toEqual({message: 'Paths with .. segments are not permitted: /nonempty_dir/../non_json_file'})
+            expect(res.body.message)
+                .toEqual('Paths with .. segments are not permitted: /nonempty_dir/../non_json_file')
         })
 })
