@@ -1,0 +1,21 @@
+{
+  "name": "fs-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "PUB_DIR=test/manual/pub nodemon src/app.js",
+    "test": "jest --watch --runInBand"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "posix": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  }
+}
