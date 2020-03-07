@@ -4,9 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node src/cli.js",
     "dev": "PUB_DIR=test/integration/pub nodemon src/cli.js",
-    "unitTest": "jest --watch --runInBand test/unit/",
-    "intTest": "jest --watch --runInBand test/integration/"
+    "unitTest": "jest test/unit/",
+    "intTest": "jest test/integration/"
   },
   "author": "",
   "license": "ISC",

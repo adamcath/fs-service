@@ -22,12 +22,12 @@ describe('Initialize', () => {
     expect(() => new HttpFs('okRootDir')).not.toThrow()
   })
 
-  test('Bogus pubDir', () => {
+  test('Bogus pubDir', async () => {
     fs.statSync = jest.fn(path => ({
       isDirectory: () => false
     }))
 
-    expectThrowsErrorMatching(
+    await expectThrowsErrorMatching(
       () => new HttpFs('bogusRootDir'),
       {
         message: 'PUB_DIR is not a directory'
