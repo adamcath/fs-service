@@ -1,7 +1,7 @@
 {
   "name": "fs-service",
   "version": "1.0.0",
-  "description": "",
+  "description": "Serves up part of the filesystem for easy consumption by REST clients",
   "main": "app.js",
   "scripts": {
     "start": "node src/cli.js",
@@ -9,7 +9,7 @@
     "unitTest": "jest test/unit/",
     "intTest": "jest test/integration/"
   },
-  "author": "",
+  "author": "Adam Cath",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",

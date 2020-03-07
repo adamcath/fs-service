@@ -81,6 +81,7 @@ class DirNode {
       }
       throw new HttpFsError(500, e.message)
     }
+    files.sort()
 
     const dirents = []
     for (const name of files) {

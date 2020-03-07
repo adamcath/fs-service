@@ -185,21 +185,21 @@ describe('DirNode', () => {
       fs.promises.readdir = jest.fn()
         .mockResolvedValue(['file1', 'dir1'])
       fs.promises.stat = jest.fn()
-        .mockResolvedValueOnce(file1Stats)
         .mockResolvedValueOnce(dir1Stats)
+        .mockResolvedValueOnce(file1Stats)
 
-      expect(await dirNode.list()).toMatchObject([file1Dirent, dir1Dirent])
+      expect(await dirNode.list()).toMatchObject([dir1Dirent, file1Dirent])
     })
 
     test('should omit files removed between readdir and stat', async () => {
       fs.promises.readdir = jest.fn()
         .mockResolvedValue(['file1', 'raceFile', 'dir1'])
       fs.promises.stat = jest.fn()
+        .mockResolvedValueOnce(dir1Stats)
         .mockResolvedValueOnce(file1Stats)
         .mockRejectedValueOnce({ code: 'ENOENT', message: 'Not found' })
-        .mockResolvedValueOnce(dir1Stats)
 
-      expect(await dirNode.list()).toMatchObject([file1Dirent, dir1Dirent])
+      expect(await dirNode.list()).toMatchObject([dir1Dirent, file1Dirent])
     })
 
     test('should 500 if file stat fails otherwise', async () => {
