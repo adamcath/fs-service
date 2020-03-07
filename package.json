@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "PUB_DIR=test/manual/pub nodemon src/app.js",
-    "test": "jest --watch --runInBand"
+    "dev": "PUB_DIR=test/integration/pub nodemon src/cli.js",
+    "intTest": "jest --watch --runInBand"
   },
   "author": "",
   "license": "ISC",
