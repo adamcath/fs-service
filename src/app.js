@@ -28,8 +28,7 @@ class App {
           return res.status(e.httpStatus).send(e)
         }
       }
-
-      // TODO else?
+      throw new Error('getNode returned unknown type')
     })
   }
 

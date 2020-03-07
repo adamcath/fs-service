@@ -12,8 +12,6 @@ class HttpFs {
   }
 
   async getNode (urlPath) {
-    // TODO Convert urlPath to a real path
-
     if (!this.isRelPathValid(urlPath)) {
       throw new HttpFsError(403, 'Paths with .. segments are not permitted: ' + urlPath)
     }
