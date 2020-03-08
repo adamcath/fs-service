@@ -88,7 +88,7 @@ Commands for the CI environment:
   ideally back out merges that break it.
   
 The CI should generally run these against the dockerized app for reproducibility:
-`docker run acath/fs-service ./premerge.sh`. This will exit non-zero if the tests fail, and emit useful logs to 
+`docker run acath/fs-service ./postmerge.sh`. This will exit non-zero if the tests fail, and emit useful logs to 
 stdout.
 
 Developers may want to do exactly what the CI does, or run the CI scripts outside 

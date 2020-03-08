@@ -1,7 +1,15 @@
 const express = require('express')
 const HttpFs = require('./httpFs')
 
+/**
+ * An Express web server that serves all GETs to any URL by delegating to {@link HttpFs}.
+ *
+ * Construction has no side-effects. To serve traffic call {@link listen()}.
+ */
 class App {
+  /**
+   * @param pubDir {string} Path to the public directory to be shared. May be absolute or relative to CWD.
+   */
   constructor (pubDir) {
     this.app = express()
 
@@ -32,6 +40,9 @@ class App {
     })
   }
 
+  /**
+   * @param port {Number} To start serving traffic on.
+   */
   listen (port) {
     this.app.listen(port, () => {
       console.log('fs-service started on port ' + port)

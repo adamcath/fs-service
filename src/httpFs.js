@@ -5,10 +5,11 @@ const posix = require('posix')
 /**
  * Maps the filesystem to RESTy data structures.
  *
- * To use it, initialize one with a root directory, and then later call getNode() with a path relative to the root dir.
- * This will either fail or give you a DirNode or FileNode which you can use to get more details.
+ * To use it, construct one with a root directory, and then later call {@link getNode()} with a path relative to the
+ * root dir. This will either fail or give you a {@link DirNode} or {@link FileNode} which you can use to get more
+ * details.
  *
- * Many of the methods throw HttpFsError, which includes an HTTP status code you can use in a response.
+ * Many of the methods throw {@link HttpFsError}, which includes an HTTP status code you can use in a response.
  */
 class HttpFs {
   /**
@@ -23,8 +24,9 @@ class HttpFs {
   }
 
   /**
-   * Given a path relative to the root, get a node representing the file or directory there.
-   * Throws HttpFsError if the node doesn't exist, can't be stat'ed, etc.
+   * @param relPath {String} to a file or directory inside the root dir.
+   * @returns {Promise<DirNode|FileNode>} representing the file or directory requested.
+   * @throws {HttpFsError} if the node doesn't exist, can't be stat'ed, etc.
    */
   async getNode (relPath) {
     if (!this.isRelPathValid(relPath)) {
@@ -55,6 +57,9 @@ class HttpFs {
    * Ensures we do not leak info about files outside of root. We could do this in a more precise way that allows
    * for ../ segments in the path, or that allows for filenames like foo..bar.txt, but unless there's a
    * compelling reason to do so, it's better to be more conservative with questionable user input.
+   *
+   * @param relPath {String} From a client. Should be considered tainted.
+   * @return {boolean} Whether the path is acceptable.
    */
   isRelPathValid (relPath) {
     return relPath.indexOf('..') < 0
@@ -93,7 +98,8 @@ class DirNode {
   }
 
   /**
-   * Provides an array of DirentNodes, or fails with HttpFsError.
+   * @return {Promise<[DirentNode]>} List of entries in this dir.
+   * @throws {HttpFsError}
    */
   async list () {
     let files
@@ -124,7 +130,9 @@ class DirNode {
   }
 
   /**
-   * Provides a DirentNode, or null if the entry should be omitted from the listing, or fails with HttpFsError.
+   * @param name Of a file in this dir.
+   * @return {Promise<null|DirentNode>} Null if the entry should be omitted from the listing.
+   * @throws {HttpFsError}
    */
   async buildDirent (name) {
     let stats
@@ -192,7 +200,8 @@ class FileNode {
   }
 
   /**
-   * If the file is UTF-8 encoded text, returns a string. Otherwise fails with HttpFsError.
+   * @return {Promise<string>} The file's contents.
+   * @throws {HttpFsError} If reading fails, or the file is not UTF-8 encoded.
    */
   async readCompletely () {
     try {
