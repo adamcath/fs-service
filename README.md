@@ -6,7 +6,7 @@ fs-service serves up files on the server's filesystem for easy access by REST cl
 
 ## Getting started
 
-Prerequisites:
+Requirements:
 - `docker`
 - `bash`
 
@@ -65,8 +65,7 @@ If you get back a 4xx or 5xx, the body will be a JSON object with:
 
 - Only regular files and directories are supported.
 - There is no pagination, so enormous directories or files may create problems.
-- If the public directory contains files not readable by the service.
-- You may not escape from the public directory using `..`.
+- You may not escape from the public directory using `..`
 
 ## Developers
 
