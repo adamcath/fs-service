@@ -53,12 +53,12 @@ Requirements:
 - `start`: Starts the service like production.
 
 Commands for the CI environment:
-- `precommit.sh`: Lint and unit tests. CI should not allow commits that fail this.
-- `postcommit.sh`: Pre-commit tests plus integration tests. CI should run this shortly after each commit, and 
-  ideally back out commits that break it.
+- `premerge.sh`: Lint and unit tests. CI should not allow merges that fail this.
+- `postmerge.sh`: Pre-merge tests plus integration tests. CI should run this shortly after each merge, and 
+  ideally back out merges that break it.
   
 The CI should generally run these against the dockerized app for reproducibility:
-`docker run acath/fs-service ./precommit.sh`. This will exit non-zero if the tests fail, and emit useful logs to 
+`docker run acath/fs-service ./premerge.sh`. This will exit non-zero if the tests fail, and emit useful logs to 
 stdout.
 
 Developers may want to do exactly what the CI does, or run the CI scripts outside 

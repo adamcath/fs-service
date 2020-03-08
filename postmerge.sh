@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-./precommit.sh
+./premerge.sh
 
 echo '##########################################'
 echo '# Running integration tests'
