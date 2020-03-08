@@ -3,6 +3,9 @@ jest.mock('fs')
 const fs = require('fs')
 const posix = require('posix')
 
+/**
+ * Invoke f() and ensure it throws an error that fuzzy matches the error provided.
+ */
 async function expectThrowsErrorMatching (f, error) {
   let thrownError
   try {
@@ -161,6 +164,28 @@ describe('DirNode', () => {
         {
           httpStatus: 404,
           message: 'Not found: path'
+        })
+    })
+
+    test('should 403 if readdir fails with EPERM', async () => {
+      fs.promises.readdir = jest.fn().mockRejectedValue({ code: 'EPERM' })
+
+      await expectThrowsErrorMatching(
+        async () => dirNode.list(),
+        {
+          httpStatus: 403,
+          message: 'Not permitted to read: path'
+        })
+    })
+
+    test('should 403 if readdir fails with EACCES', async () => {
+      fs.promises.readdir = jest.fn().mockRejectedValue({ code: 'EACCES' })
+
+      await expectThrowsErrorMatching(
+        async () => dirNode.list(),
+        {
+          httpStatus: 403,
+          message: 'Not permitted to read: path'
         })
     })
 
