@@ -6,7 +6,7 @@ fs-service serves up files on the server's filesystem for easy access by REST cl
 
 ## Getting started
 
-Prerequisites:
+Requirements:
 - `docker`
 - `bash`
 
