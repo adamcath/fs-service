@@ -51,7 +51,7 @@ If the path corresponds to a directory, you will get an a list of entries in the
 ### Schema of a directory response 
 
 A directory is represented as an array of entry objects. An entry object has:
-- `name`: String representing the filename.
+- `name`: String representing the filename. Subdirectories end in `/`.
 - `owner`: May be a string or a numeric UID, if the UID stored in the filesystem couldn't be resolved to a user.
 - `size`: Number representing the file's size in bytes.
 - `permissions`: String representing the file's permissions as 1-3 octal digits.
