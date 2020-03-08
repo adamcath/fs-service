@@ -275,6 +275,28 @@ describe('FileNode', () => {
         })
     })
 
+    test('should 403 if readFile fails with EPERM', async () => {
+      fs.promises.readFile = jest.fn().mockRejectedValue({ code: 'EPERM' })
+
+      await expectThrowsErrorMatching(
+        async () => fileNode.readCompletely(),
+        {
+          httpStatus: 403,
+          message: 'Not permitted to read: path'
+        })
+    })
+
+    test('should 403 if readFile fails with EACCES', async () => {
+      fs.promises.readFile = jest.fn().mockRejectedValue({ code: 'EACCES' })
+
+      await expectThrowsErrorMatching(
+        async () => fileNode.readCompletely(),
+        {
+          httpStatus: 403,
+          message: 'Not permitted to read: path'
+        })
+    })
+
     test('should 500 if readFile fails otherwise', async () => {
       fs.promises.readFile = jest.fn().mockRejectedValue({ code: 'UNKNOWN', message: 'read failed' })
 

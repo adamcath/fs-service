@@ -159,6 +159,9 @@ class FileNode {
       if (e.code === 'ENOENT') {
         throw new HttpFsError(404, 'Not found: ' + this.path)
       }
+      if (e.code === 'EPERM' || e.code === 'EACCES') {
+        throw new HttpFsError(403, 'Not permitted to read: ' + this.path)
+      }
       throw new HttpFsError(500, e.message)
     }
   }
