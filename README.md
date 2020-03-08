@@ -41,6 +41,33 @@ $ curl localhost:3000/json_file
 { "foo": "bar" }
 ```
 
+## API Reference
+
+A `GET` to any URL on this service will return some contents from the public directory configured for the service. 
+The entire URL (after the host and port) is interpreted as a path relative to this directory.
+If the path corresponds to a UTF-8 encoded file, you will get the contents of the file with `Content-Type: text/plain`.
+If the path corresponds to a directory, you will get an a list of entries in the directory as JSON.
+
+### Schema of a directory response 
+
+A directory is represented as an array of entry objects. An entry object has:
+- `name`: String representing the filename.
+- `owner`: May be a string or a numeric UID, if the UID stored in the filesystem couldn't be resolved to a user.
+- `size`: Number representing the file's size in bytes.
+- `permissions`: String representing the file's permissions as 1-3 octal digits.
+
+### Errors
+
+If you get back a 4xx or 5xx, the body will be a JSON object with:
+- `message`: The error message 
+
+### Limitations
+
+- Only regular files and directories are supported.
+- There is no pagination, so enormous directories or files may create problems.
+- If the public directory contains files not readable by the service.
+- You may not escape from the public directory using `..`.
+
 ## Developers
 
 Requirements:
