@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/cli.js",
     "dev": "PUB_DIR=test/integration/pub nodemon src/cli.js",
-    "unitTest": "jest test/unit/",
+    "unitTest": "jest --config unitTestConfig.js test/unit/",
     "intTest": "jest test/integration/"
   },
   "author": "Adam Cath",

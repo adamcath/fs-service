@@ -82,7 +82,8 @@ Requirements:
 - `start`: Starts the service like production.
 
 Commands for the CI environment:
-- `premerge.sh`: Lint, unit tests, and vulnerability scan. CircleCI is set up on this repo to run this on every PR.
+- `premerge.sh`: Lint, unit tests with coverage threshold, and vulnerability scan. CircleCI is set up to run this
+  on every PR.
 - `postmerge.sh`: Pre-merge tests plus integration tests. CI should run this shortly after each merge, and 
   ideally back out merges that break it.
   
