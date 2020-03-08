@@ -2,16 +2,15 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  premerge:
     executor:
       name: node/default
     steps:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
-            - run: npm test
+            - run: ./premerge.sh
 workflows:
-    build-and-test:
+    premerge:
       jobs:
-        - build-and-test
+        - premerge
