@@ -1,6 +1,6 @@
 # fs-service
 
-[![adamcath](https://circleci.com/gh/adamcath/fs-service.svg?style=svg)](<LINK>)
+[![adamcath](https://circleci.com/gh/adamcath/fs-service.svg?style=svg)](https://app.circleci.com/pipelines/github/adamcath/fs-service?branch=master)
 
 fs-service serves up files on the server's filesystem for easy access by REST clients.
 
