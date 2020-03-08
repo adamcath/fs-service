@@ -53,9 +53,7 @@ Requirements:
 - `start`: Starts the service like production.
 
 Commands for the CI environment:
-- `premerge.sh`: Lint, unit tests, and vulnerability scan. CI should not allow merges that fail this.
-- `postmerge.sh`: Pre-merge tests plus integration tests. CI should run this shortly after each merge, and 
-  ideally back out merges that break it.
+- `premerge.sh`: Lint, vulnerability scan, unit tests, and integration tests. CI should not allow merges that fail this.
   
 The CI should generally run these against the dockerized app for reproducibility:
 `docker run acath/fs-service ./premerge.sh`. This will exit non-zero if the tests fail, and emit useful logs to 

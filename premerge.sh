@@ -17,13 +17,19 @@ echo '##########################################'
 npx eslint src test
 
 echo '##########################################'
+echo '# Vulnerability scan'
+echo '##########################################'
+
+npm audit --production
+
+echo '##########################################'
 echo '# Running unit tests'
 echo '##########################################'
 
 npm run unitTest
 
 echo '##########################################'
-echo '# Vulnerability scan'
+echo '# Running integration tests'
 echo '##########################################'
 
-npm audit --production
+npm run intTest
