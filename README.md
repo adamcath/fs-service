@@ -1,5 +1,7 @@
 # fs-service
 
+[![adamcath](https://circleci.com/gh/adamcath/fs-service.svg?style=svg)](<LINK>)
+
 fs-service serves up files on the server's filesystem for easy access by REST clients.
 
 ## Getting started
